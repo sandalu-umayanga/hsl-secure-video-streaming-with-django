@@ -6,6 +6,8 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Video
 from .serializers import VideoSerializer
+import time
+from django.conf import settings
 
 class VideoUploadView(APIView):
     def post(self, request, format=None):
@@ -18,10 +20,27 @@ class VideoUploadView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+def get_video_length(input_path):
+    """Use ffprobe to get the duration of the video."""
+    ffprobe_command = [
+        'ffprobe',
+        '-v', 'error',
+        '-select_streams', 'v:0',
+        '-show_entries', 'format=duration',
+        '-of', 'default=noprint_wrappers=1:nokey=1',
+        input_path
+    ]
+    
+    try:
+        result = subprocess.run(ffprobe_command, capture_output=True, text=True, check=True)
+        return float(result.stdout.strip())
+    except subprocess.CalledProcessError as e:
+        print(f"❌ Error getting video length: {e}")
+        return 0  # Default to 0 if there's an error
+
 def process_video(video_instance):
-    import os
-    import subprocess
-    from django.conf import settings
+    # Start measuring time
+    start_time = time.time()
 
     # Build paths
     input_path = video_instance.video_file.path
@@ -55,7 +74,19 @@ def process_video(video_instance):
         video_instance.processed = True
         video_instance.hls_manifest = os.path.relpath(output_manifest, settings.MEDIA_ROOT)
         video_instance.save()
+
+        # Get the video length
+        video_length = get_video_length(input_path)
+
+        # End measuring time
+        end_time = time.time()
+
+        # Calculate time taken for processing
+        processing_time = end_time - start_time
+
+        # Print the video length and processing time
+        print(f"Video Length: {video_length:.2f} seconds")
+        print(f"Processing Time: {processing_time:.2f} seconds")
+
     except subprocess.CalledProcessError as e:
         print(f"❌ Error processing video: {e}")
-  
-    
