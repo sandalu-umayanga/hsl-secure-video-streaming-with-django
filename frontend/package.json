@@ -1,4 +1,10 @@
 {
+  "name": "frontend-root",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "npm start --prefix video-frontend",
+    "install-all": "npm install --prefix video-frontend"
+  },
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
