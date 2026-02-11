@@ -14,8 +14,8 @@ FROM nginx:stable-alpine
 
 COPY --from=build-stage /app/build /usr/share/nginx/html
 
-# Optional: Add custom nginx config if you need routing support (Single Page App)
-# COPY nginx.conf /etc/nginx/conf.d/default.conf
+# Add custom nginx config for API proxying
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

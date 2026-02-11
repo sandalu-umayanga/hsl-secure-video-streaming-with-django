@@ -27,7 +27,7 @@ const VideoUploader = () => {
 
   const fetchVideos = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:8000/api/video/videos/');
+      const response = await axios.get('/api/video/videos/');
       setVideos(response.data);
     } catch (error) {
       console.error('Failed to fetch videos:', error);
@@ -55,7 +55,7 @@ const VideoUploader = () => {
     formData.append('video_file', file);
 
     try {
-      const response = await axios.post('http://localhost:8000/api/video/upload/', formData, {
+      const response = await axios.post('/api/video/upload/', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         },
@@ -80,9 +80,9 @@ const VideoUploader = () => {
     if (processingId) {
       interval = setInterval(async () => {
         try {
-          const response = await axios.get(`http://localhost:8000/api/video/videos/${processingId}/`);
+          const response = await axios.get(`/api/video/videos/${processingId}/`);
           if (response.data.processed) {
-            setManifestUrl(`http://localhost:8000/media/${response.data.hls_manifest}`);
+            setManifestUrl(`/media/${response.data.hls_manifest}`);
             setProcessingId(null);
             fetchVideos();
             clearInterval(interval);
@@ -112,7 +112,7 @@ const VideoUploader = () => {
   }, [manifestUrl]);
 
   const playVideo = (hls_manifest) => {
-    setManifestUrl(`http://localhost:8000/media/${hls_manifest}`);
+    setManifestUrl(`/media/${hls_manifest}`);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
