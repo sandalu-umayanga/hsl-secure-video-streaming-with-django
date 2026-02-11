@@ -10,7 +10,9 @@
 
 ### DevOps & Orchestration
 - **Docker**: Multi-stage builds for frontend optimization (Nginx).
-- **Docker Compose**: Service orchestration for local development and testing.
+- **Nginx Reverse Proxy**: Configured to handle both static file serving and API proxying.
+    - **Upload Limit**: `client_max_body_size` is set to `500M` to support large video uploads.
+    - **Routing**: Proxies `/api/` and `/media/` to the backend service, eliminating CORS issues.
 - **Kubernetes**:
     - **Deployments**: Scalable pods for backend and frontend.
     - **Services**: `ClusterIP` for internal traffic, `LoadBalancer` for external access.

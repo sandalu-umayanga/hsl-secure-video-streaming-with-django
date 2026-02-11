@@ -30,13 +30,18 @@ docker-compose up --build
 - Backend API: `http://localhost:8000`
 
 ### 2. Using Kubernetes
-1. Build and push your images to a registry.
+1. Build and push your images to a registry (or build locally in minikube using `eval $(minikube docker-env)`).
 2. Update the `image:` tags in `k8s/backend.yaml` and `k8s/frontend.yaml`.
 3. Apply the manifests:
 ```bash
 kubectl apply -f k8s/backend.yaml
 kubectl apply -f k8s/frontend.yaml
 ```
+4. **Accessing on Minikube**: Since `LoadBalancer` IPs stay pending on local clusters, use:
+```bash
+minikube service video-frontend-service
+```
+This command creates a tunnel and opens the application in your default browser.
 
 ---
 

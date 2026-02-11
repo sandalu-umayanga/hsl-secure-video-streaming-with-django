@@ -5,8 +5,8 @@
 The system is designed for modern cloud environments and supports multiple deployment strategies:
 
 - **Local Development**: Python/Django and React run natively.
-- **Containerized**: Docker Compose manages separate containers for the backend (Django + FFmpeg) and frontend (Nginx + React build).
-- **Orchestrated (Production)**: Kubernetes manifests provide a scalable, highly available deployment with persistent storage for video segments.
+- **Containerized**: Docker Compose manages separate containers. The frontend uses **Nginx** as a reverse proxy to route `/api` and `/media` requests to the backend.
+- **Orchestrated (Production)**: Kubernetes manifests provide a scalable, highly available deployment. Internal service discovery (`video-backend-service`) is used for seamless communication between components.
 
 ### Data Flow
 1.  **Ingestion**: Users upload MP4 videos via the React frontend.
