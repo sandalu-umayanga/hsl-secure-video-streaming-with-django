@@ -21,6 +21,7 @@ This project is a full-stack application that allows users to upload videos, whi
 For more in-depth information, please refer to the following files in the `DOCS/` directory:
 
 - [System Overview](DOCS/OVERVIEW.md): High-level architecture and data flow.
+- [S3 Middleware Guide](DOCS/S3_MIDDLEWARE_GUIDE.md): How to use this project as a video processing service for S3.
 - [Technical Documentation](DOCS/TECHNICAL.md): Details on FFmpeg techniques, bitrates, and low-latency HLS.
 - [User & Developer Guide](DOCS/GUIDE.md): Instructions on how to use the app and extend its functionality.
 
