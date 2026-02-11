@@ -14,7 +14,8 @@ spec:
     spec:
       containers:
       - name: video-frontend
-        image: video-frontend:latest # Replace with your registry image
+        image: video-frontend:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 80
 ---

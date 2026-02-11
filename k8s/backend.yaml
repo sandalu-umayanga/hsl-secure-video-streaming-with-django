@@ -25,7 +25,8 @@ spec:
     spec:
       containers:
       - name: video-backend
-        image: video-backend:latest # Replace with your registry image
+        image: video-backend:latest
+        imagePullPolicy: Never
         ports:
         - containerPort: 8000
         volumeMounts:
