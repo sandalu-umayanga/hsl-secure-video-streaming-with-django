@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: video-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: video-frontend
+  template:
+    metadata:
+      labels:
+        app: video-frontend
+    spec:
+      containers:
+      - name: video-frontend
+        image: video-frontend:latest # Replace with your registry image
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: video-frontend-service
+spec:
+  selector:
+    app: video-frontend
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer

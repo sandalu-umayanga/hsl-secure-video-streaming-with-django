@@ -11,6 +11,7 @@ This project is a full-stack application that allows users to upload videos, whi
 - **Dynamic Watermarking**: FFmpeg overlays the user's email onto the video during processing.
 - **HLS Conversion**: Automatically segments videos into `.ts` files and generates an `.m3u8` manifest for smooth streaming.
 - **Live Status Polling**: The React frontend polls the API to track processing status in real-time.
+- **Docker & Kubernetes Ready**: Complete containerization and orchestration manifests included for production-grade deployment.
 - **Video Library**: A dashboard to view and play previously processed videos.
 
 ---

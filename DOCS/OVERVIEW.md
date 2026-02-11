@@ -1,7 +1,12 @@
 # System Overview
 
-## Architecture
-The project follows a decoupled architecture with a **Django REST Framework (DRF)** backend and a **React** frontend.
+## Deployment Architecture
+
+The system is designed for modern cloud environments and supports multiple deployment strategies:
+
+- **Local Development**: Python/Django and React run natively.
+- **Containerized**: Docker Compose manages separate containers for the backend (Django + FFmpeg) and frontend (Nginx + React build).
+- **Orchestrated (Production)**: Kubernetes manifests provide a scalable, highly available deployment with persistent storage for video segments.
 
 ### Data Flow
 1.  **Ingestion**: Users upload MP4 videos via the React frontend.

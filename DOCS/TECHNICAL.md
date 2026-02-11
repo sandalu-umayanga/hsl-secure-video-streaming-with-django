@@ -8,10 +8,13 @@
 - **SQLite**: Local database for storing video metadata and processing status.
 - **FFmpeg**: The "engine" of the pipeline, used for transcoding and watermarking.
 
-### Frontend
-- **React 18+**: For the user interface.
-- **Axios**: For API communication and file upload progress.
-- **Hls.js**: A JavaScript library that implements an HLS client, allowing playback in browsers without native support.
+### DevOps & Orchestration
+- **Docker**: Multi-stage builds for frontend optimization (Nginx).
+- **Docker Compose**: Service orchestration for local development and testing.
+- **Kubernetes**:
+    - **Deployments**: Scalable pods for backend and frontend.
+    - **Services**: `ClusterIP` for internal traffic, `LoadBalancer` for external access.
+    - **PersistentVolumeClaims (PVC)**: For reliable storage of HLS video segments.
 
 ---
 

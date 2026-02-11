@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./backend
+    volumes:
+      - ./backend/media:/app/media
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - ALLOWED_HOSTS=localhost,127.0.0.1,backend
+
+  frontend:
+    build: ./frontend/video-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+volumes:
+  media_data:

@@ -19,6 +19,27 @@
 
 ---
 
+## Containerized Deployment
+
+### 1. Using Docker Compose (Recommended for local testing)
+From the project root, run:
+```bash
+docker-compose up --build
+```
+- Frontend: `http://localhost:3000`
+- Backend API: `http://localhost:8000`
+
+### 2. Using Kubernetes
+1. Build and push your images to a registry.
+2. Update the `image:` tags in `k8s/backend.yaml` and `k8s/frontend.yaml`.
+3. Apply the manifests:
+```bash
+kubectl apply -f k8s/backend.yaml
+kubectl apply -f k8s/frontend.yaml
+```
+
+---
+
 ## Maintenance for Developers
 
 ### Adding New Resolutions
